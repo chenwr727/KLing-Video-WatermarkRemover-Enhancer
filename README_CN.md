@@ -4,7 +4,7 @@
 
 **KLing-Video-WatermarkRemover-Enhancer** 是一个开源工具，专为处理由可灵（KLing）生成的视频而设计。该工具集成了水印去除和视频增强功能，使视频更加清晰、专业，适用于个人视频优化以及批量视频处理场景。
 
-[![Watch the demo](https://v-blog.csdnimg.cn/asset/bca9fa3621c0b8fda9da1108759eafe1/cover/Cover0.jpg)](https://live.csdn.net/v/embed/421510)
+![Demo](demo.webp)
 
 ## 功能特性
 
