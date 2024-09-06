@@ -80,10 +80,10 @@ def main():
         "--input", type=str, required=True, help="Input video file or directory"
     )
     parser.add_argument(
-        "--remove-watermark", action="store_false", help="Enable watermark removal"
+        "--remove-watermark", action="store_true", help="Enable watermark removal"
     )
     parser.add_argument(
-        "--enhance-video", action="store_false", help="Enable video enhancement"
+        "--enhance-video", action="store_true", help="Enable video enhancement"
     )
 
     args = parser.parse_args()

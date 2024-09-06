@@ -1,3 +1,5 @@
+简体中文 | [English](README.md)
+
 # KLing-Video-WatermarkRemover-Enhancer
 
 ## 项目简介
@@ -22,33 +24,53 @@ cd KLing-Video-WatermarkRemover-Enhancer
 pip install -r requirements.txt
 ```
 
+## 参数配置
+
+配置文件 `config.yaml` 中定义了水印去除参数。
+
+- `position: [556, 1233, 701, 1267]`
+  - 这是去水印的区域位置，通常是定义一个矩形区域的左上角和右下角的坐标。
+  - 具体含义是 `(x1, y1, x2, y2)`，分别代表水印的左上角坐标 `(556, 1233)` 和右下角坐标 `(701, 1267)`。
+  - 在处理视频时，可以根据这些坐标确定水印区域。
+
+- `ckpt_p: "./weights/sttn.pth"`
+  - 这是水印去除模型的权重文件路径。
+  - [sttn.pth](https://drive.google.com/file/d/1ZAMV8547wmZylKRt5qR_tC5VlosXD4Wv/view?usp=sharing) 是基于时空轨迹网络（STTN，Spatio-Temporal Trajectory Network）的模型文件，通常用于去除动态视频中的物体或水印。
+
+- `mask_expand: 30`
+  - 这是水印区域扩展的像素数。
+  - 在去水印的过程中，通常需要对水印区域进行适当扩展，以确保去除的水印边缘不会留下残影或瑕疵。
+
+- `neighbor_stride: 10`
+  - 表示在去除水印时，时空轨迹网络计算邻域的步长大小。
+  - 此值控制在处理视频帧时，对邻近帧的信息进行采样的频率或步长。较大的步长可能会减少计算量，但也可能降低去水印效果。
+
 ## 使用方法
 
 使用 **KLing-Video-WatermarkRemover-Enhancer** 去除水印并增强视频，只需运行以下命令：
 
 ```bash
-python main.py --input path/to/video.mp4 --output path/to/output.mp4
+python main.py --input path/to/video.mp4 --remove-watermark --enhance-video
 ```
 
 ### 参数说明
 
 - `--input`：输入视频的路径或文件夹路径。
-- `--output`：处理后视频的保存路径。
-- `--remove-watermark`：启用水印去除功能（默认启用）。
-- `--enhance-video`：启用视频增强功能（默认启用）。
+- `--remove-watermark`：如果指定此参数，则启用水印去除功能。
+- `--enhance-video`：如果指定此参数，则启用视频增强功能。
 
 ## 示例
 
 ```bash
-python main.py --input example.mp4 --output enhanced_example.mp4
+python main.py --input example.mp4 --remove-watermark --enhance-video
 ```
 
 ## 项目结构
 
 - **main.py**：主程序入口，负责管理整个处理流程。
-- **modules/**：包含各个功能模块（OCR、擦除字幕、翻译、嵌入字幕）。
+- **modules/**：包含各个功能模块（擦除水印、视频增强等）。
 - **utils/**：包含通用工具，如日志记录、视频处理工具等。
-- **config.yaml**：配置文件，用于设置语言、视频格式等参数。
+- **config.yaml**：配置文件，用于设置水印等参数。
 
 ## 参考
 - 视频擦除：https://github.com/researchmm/STTN

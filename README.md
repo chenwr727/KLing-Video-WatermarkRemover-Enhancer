@@ -1,3 +1,5 @@
+English | [简体中文](README_CN.md)
+
 # KLing-Video-WatermarkRemover-Enhancer
 
 ## Project Overview
@@ -22,34 +24,54 @@ cd KLing-Video-WatermarkRemover-Enhancer
 pip install -r requirements.txt
 ```
 
+## Configuration
+
+The configuration file `config.yaml` defines the parameters for watermark removal.
+
+- `position: [556, 1233, 701, 1267]`
+  - This specifies the area for watermark removal, typically defining the top-left and bottom-right coordinates of a rectangular region.
+  - The values represent `(x1, y1, x2, y2)` where `(556, 1233)` is the top-left corner and `(701, 1267)` is the bottom-right corner of the watermark.
+
+- `ckpt_p: "./weights/sttn.pth"`
+  - Path to the watermark removal model weight file.
+  - [sttn.pth](https://drive.google.com/file/d/1ZAMV8547wmZylKRt5qR_tC5VlosXD4Wv/view?usp=sharing) is a model based on the Spatio-Temporal Trajectory Network (STTN), commonly used for removing objects or watermarks from dynamic videos.
+
+- `mask_expand: 30`
+  - Expands the watermark area by a given number of pixels.
+  - Expanding the watermark region ensures no residue or artifacts are left around the edges after removal.
+
+- `neighbor_stride: 10`
+  - Controls the stride size when computing neighboring frames using the Spatio-Temporal Trajectory Network.
+  - A larger stride reduces computation but may affect the watermark removal quality.
+
 ## Usage
 
 To remove watermarks and enhance videos using **KLing-Video-WatermarkRemover-Enhancer**, simply run the following command:
 
 ```bash
-python main.py --input path/to/video.mp4 --output path/to/output.mp4
+python main.py --input path/to/video.mp4 --remove-watermark --enhance-video
 ```
 
 ### Parameter Description
 
 - `--input`: Path to the input video or folder.
-- `--output`: Path to save the processed video.
-- `--remove-watermark`: Enable the watermark removal feature (enabled by default).
-- `--enhance-video`: Enable the video enhancement feature (enabled by default).
+- `--remove-watermark`: Enables the watermark removal function when specified.
+- `--enhance-video`: Enables video enhancement when specified.
 
 ## Example
 
 ```bash
-python main.py --input example.mp4 --output enhanced_example.mp4
+python main.py --input example.mp4 --remove-watermark --enhance-video
 ```
 
 ## Project Structure
 
 - **main.py**: Main program entry point, responsible for managing the entire processing workflow.
-- **modules/**: Contains various functional modules (OCR, subtitle erasure, translation, subtitle embedding).
+- **modules/**: Contains functional modules (such as erasing watermarks, enhancing videos, and more).
 - **utils/**: Contains general utilities such as logging, video processing tools, etc.
-- **config.yaml**: Configuration file for setting parameters like language, video format, etc.
+- **config.yaml**: Configuration file for setting watermark parameters.
 
 ## References
+
 - Video Erasure: https://github.com/researchmm/STTN
 - Video Restoration: https://github.com/xinntao/Real-ESRGAN
