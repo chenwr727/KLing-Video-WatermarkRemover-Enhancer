@@ -2,7 +2,6 @@ import argparse
 import os
 import shutil
 
-from modules.config import load_config
 from modules.enhance import enhance_frames
 from modules.erase import remove_watermark
 from utils.logging_utils import update_status
@@ -22,7 +21,6 @@ def process_video(
     enhance_video_flag: bool,
 ):
     update_status(f"Start! {input_path}")
-    config = load_config()
     file_name, _ = os.path.splitext(input_path)
     fps = detect_fps(input_path)
 
@@ -33,7 +31,7 @@ def process_video(
 
     if remove_watermark_flag:
         update_status("Erase: removing watermark...")
-        remove_watermark(frame_paths, config)
+        remove_watermark(frame_paths)
 
     if enhance_video_flag:
         update_status("Enhance: video enhancement...")

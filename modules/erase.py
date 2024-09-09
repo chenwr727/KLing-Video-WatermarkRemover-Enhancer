@@ -7,6 +7,7 @@ import torch
 from PIL import Image
 from tqdm import tqdm
 
+from modules import CONFIG
 from modules.sttn import build_sttn_model, inpaint_video_with_builded_sttn
 from utils.image_utils import load_img
 
@@ -77,7 +78,7 @@ def process_frame(value: tuple):
 
     Given a tuple containing the file path and frame data, this function saves the frame data as an image file.
     This is particularly useful in video processing or saving image sequences.
-    
+
     Parameters:
         value (tuple): A tuple where the first element is the file path to save the frame and the second element is the frame data as a numpy array.
     """
@@ -126,27 +127,27 @@ def extract_mask(
     return frames_list, masks_list
 
 
-def remove_watermark(frame_paths: List[str], config: dict):
+def remove_watermark(frame_paths: List[str]):
     """
     Remove watermark from video frames.
-    
+
     This function removes watermarks by extracting masks and inpainting the affected areas using surrounding pixels.
-    
+
     Parameters:
     - frame_paths: A list of file paths to the video frames.
     - config: A dictionary containing watermark position, mask expansion, neighbor stride, and checkpoint path.
-    
+
     Returns:
     None. The function modifies the video frames in place.
     """
     frames_list, masks_list = extract_mask(
-        frame_paths, config["watermark"]["position"], config["watermark"]["mask_expand"]
+        frame_paths, CONFIG["watermark"]["position"], CONFIG["watermark"]["mask_expand"]
     )
     results = inpaint_video(
         frame_paths,
         frames_list,
         masks_list,
-        config["watermark"]["neighbor_stride"],
-        config["watermark"]["ckpt_p"],
+        CONFIG["watermark"]["neighbor_stride"],
+        CONFIG["watermark"]["ckpt_p"],
     )
     inpaint_imag(results)

@@ -26,7 +26,10 @@ pip install -r requirements.txt
 
 ## 参数配置
 
-配置文件 `config.yaml` 中定义了水印去除参数。
+配置文件 `config.yaml` 中定义了水印去除和视频增强参数。
+
+### `watermark`
+此部分配置水印去除的参数：
 
 - `position: [556, 1233, 701, 1267]`
   - 这是去水印的区域位置，通常是定义一个矩形区域的左上角和右下角的坐标。
@@ -44,6 +47,19 @@ pip install -r requirements.txt
 - `neighbor_stride: 10`
   - 表示在去除水印时，时空轨迹网络计算邻域的步长大小。
   - 此值控制在处理视频帧时，对邻近帧的信息进行采样的频率或步长。较大的步长可能会减少计算量，但也可能降低去水印效果。
+
+### `enhance`
+此部分配置视频增强参数：
+
+- **`RealESRGAN_model_path: "./weights/RealESRGAN_x2plus.pth"`**
+  - 这是 Real-ESRGAN 模型权重的路径，用于增强视频的分辨率和质量。
+  - 可以在 Real-ESRGAN/inference_realesrgan.py 获取更多的模型。
+  - [RealESRGAN_x2plus.pth](https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.1/RealESRGAN_x2plus.pth)
+
+- **`GFPGANer_model_path: "./weights/GFPGANv1.4.pth"`**
+  - 这是 GFPGAN 模型权重的路径，用于在视频中进行面部增强，提高面部特征的清晰度和细节。
+  - 可以在 Real-ESRGAN/cog_predict.py 获取更多的模型。
+  - [GFPGANv1.4.pth](https://github.com/TencentARC/GFPGAN/releases/download/v1.3.0/GFPGANv1.4.pth)
 
 ## 使用方法
 

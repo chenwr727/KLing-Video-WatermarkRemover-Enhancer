@@ -28,6 +28,9 @@ pip install -r requirements.txt
 
 The configuration file `config.yaml` defines the parameters for watermark removal.
 
+### `watermark`
+This section configures the watermark removal parameters:
+
 - `position: [556, 1233, 701, 1267]`
   - This specifies the area for watermark removal, typically defining the top-left and bottom-right coordinates of a rectangular region.
   - The values represent `(x1, y1, x2, y2)` where `(556, 1233)` is the top-left corner and `(701, 1267)` is the bottom-right corner of the watermark.
@@ -43,6 +46,20 @@ The configuration file `config.yaml` defines the parameters for watermark remova
 - `neighbor_stride: 10`
   - Controls the stride size when computing neighboring frames using the Spatio-Temporal Trajectory Network.
   - A larger stride reduces computation but may affect the watermark removal quality.
+
+### `enhance`
+
+This section configures the video enhancement parameters:
+
+- **`RealESRGAN_model_path: "./weights/RealESRGAN_x2plus.pth"`**
+  - This is the path to the Real-ESRGAN model weights, which are used to enhance the resolution and quality of the video.
+  - More information about the model can be found in Real-ESRGAN/inference_realesrgan.py.
+  - [RealESRGAN_x2plus.pth](https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.1/RealESRGAN_x2plus.pth)
+
+- **`GFPGANer_model_path: "./weights/GFPGANv1.4.pth"`**
+  - This is the path to the GFPGAN model weights, which are used for face enhancement within the video, improving clarity and detail in facial features.
+  - More information about the model can be found in Real-ESRGAN/cog_predict.py.
+  - [GFPGANv1.4.pth](https://github.com/TencentARC/GFPGAN/releases/download/v1.3.0/GFPGANv1.4.pth)
 
 ## Usage
 

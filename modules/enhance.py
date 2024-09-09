@@ -13,6 +13,7 @@ from realesrgan import RealESRGANer
 from tqdm import tqdm
 
 from gfpgan import GFPGANer
+from modules import CONFIG
 
 warnings.filterwarnings("ignore", category=UserWarning)
 
@@ -45,7 +46,7 @@ def get_face_enhancer():
 
             upsampler = RealESRGANer(
                 scale=2,
-                model_path="./weights/RealESRGAN_x2plus.pth",
+                model_path=CONFIG["enhance"]["RealESRGAN_model_path"],
                 dni_weight=None,
                 model=model,
                 tile=0,
@@ -56,7 +57,7 @@ def get_face_enhancer():
             )
 
             FACE_ENHANCER = GFPGANer(
-                model_path="./weights/GFPGANv1.4.pth",
+                model_path=CONFIG["enhance"]["GFPGANer_model_path"],
                 upscale=2,
                 arch="clean",
                 channel_multiplier=2,

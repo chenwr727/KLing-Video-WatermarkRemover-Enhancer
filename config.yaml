@@ -3,3 +3,7 @@ watermark:
   ckpt_p: "./weights/sttn.pth"
   mask_expand: 30
   neighbor_stride: 10
+
+enhance:
+  RealESRGAN_model_path: "./weights/RealESRGAN_x2plus.pth"
+  GFPGANer_model_path: "./weights/GFPGANv1.4.pth"
