@@ -19,7 +19,7 @@
 按照以下步骤安装 **KLing-Video-WatermarkRemover-Enhancer**：
 
 ```bash
-git clone https://github.com/chenwr727/KLing-Video-WatermarkRemover-Enhancer.git
+git clone --recursive https://github.com/chenwr727/KLing-Video-WatermarkRemover-Enhancer.git
 cd KLing-Video-WatermarkRemover-Enhancer
 pip install -r requirements.txt
 ```
