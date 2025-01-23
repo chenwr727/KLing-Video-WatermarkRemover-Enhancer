@@ -19,8 +19,10 @@ English | [简体中文](README_CN.md)
 Follow these steps to install **KLing-Video-WatermarkRemover-Enhancer**:
 
 ```bash
-git clone --recursive https://github.com/chenwr727/KLing-Video-WatermarkRemover-Enhancer.git
+git clone https://github.com/chenwr727/KLing-Video-WatermarkRemover-Enhancer.git
 cd KLing-Video-WatermarkRemover-Enhancer
+git clone https://github.com/xinntao/Real-ESRGAN.git
+git clone https://github.com/researchmm/STTN.git
 pip install -r requirements.txt
 ```
 
