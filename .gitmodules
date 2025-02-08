@@ -1,0 +1,6 @@
+[submodule "STTN"]
+	path = STTN
+	url = https://github.com/researchmm/STTN.git
+[submodule "Real-ESRGAN"]
+	path = Real-ESRGAN
+	url = https://github.com/xinntao/Real-ESRGAN.git
