@@ -1,35 +1,52 @@
 简体中文 | [English](README.md)
 
-# KLing-Video-WatermarkRemover-Enhancer
+# 🎥 KLing-Video-WatermarkRemover-Enhancer
 
-## 项目简介
+<div align="center">
 
-**KLing-Video-WatermarkRemover-Enhancer** 是一个开源工具，专为处理由可灵（KLing）生成的视频而设计。该工具集成了水印去除和视频增强功能，使视频更加清晰、专业，适用于个人视频优化以及批量视频处理场景。
+[![GitHub stars](https://img.shields.io/github/stars/chenwr727/KLing-Video-WatermarkRemover-Enhancer?style=social)](https://github.com/chenwr727/KLing-Video-WatermarkRemover-Enhancer/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/chenwr727/KLing-Video-WatermarkRemover-Enhancer?style=social)](https://github.com/chenwr727/KLing-Video-WatermarkRemover-Enhancer/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/chenwr727/KLing-Video-WatermarkRemover-Enhancer)](https://github.com/chenwr727/KLing-Video-WatermarkRemover-Enhancer/issues)
+
+一键去除可灵视频水印，让你的视频更专业！🚀
 
 ![Demo](demo.webp)
 
-## 功能特性
+</div>
 
-- **水印去除**：自动检测并移除可灵生成视频中的水印，保证视频的纯净度。
-- **视频增强**：通过高级算法增强视频的清晰度、亮度和对比度，提升观看体验。
-- **批量处理**：支持一次处理多个视频文件，高效管理大量视频。
+## ✨ 亮点功能
 
-## 安装
+🎯 **完美去水印**
+- 智能检测并精准移除可灵水印
+- 无损画质，边缘平滑自然
+- 支持批量处理，效率拉满
+
+🎨 **AI 画质增强**
+- 基于 Real-ESRGAN 的超分辨率技术
+- 智能优化亮度、对比度和清晰度
+- 面部细节特殊优化，让人物更出彩
+
+⚡ **高效便捷**
+- 简单的命令行操作
+- 支持批量处理多个视频
+- 可自定义处理参数
+
+## 🔧 安装
 
 按照以下步骤安装 **KLing-Video-WatermarkRemover-Enhancer**：
 
 ```bash
-git clone https://github.com/chenwr727/KLing-Video-WatermarkRemover-Enhancer.git
-cd KLing-Video-WatermarkRemover-Enhancer
-git clone https://github.com/xinntao/Real-ESRGAN.git
-git clone https://github.com/researchmm/STTN.git
+git clone --recursive https://github.com/chenwr727/KLing-Video-WatermarkRemover-Enhancer.git
+conda create -n kling python=3.10
+conda activate kling
+pip install -r requirements.txt
 ```
 
-## 参数配置
+## 🛠️ 参数配置
 
 配置文件 `config.yaml` 中定义了水印去除和视频增强参数。
 
-### `watermark`
+### `去水印`
 此部分配置水印去除的参数：
 
 - `position: [556, 1233, 701, 1267]`
@@ -49,7 +66,7 @@ git clone https://github.com/researchmm/STTN.git
   - 表示在去除水印时，时空轨迹网络计算邻域的步长大小。
   - 此值控制在处理视频帧时，对邻近帧的信息进行采样的频率或步长。较大的步长可能会减少计算量，但也可能降低去水印效果。
 
-### `enhance`
+### `视频增强`
 此部分配置视频增强参数：
 
 - **`RealESRGAN_model_path: "./weights/RealESRGAN_x2plus.pth"`**
@@ -62,33 +79,42 @@ git clone https://github.com/researchmm/STTN.git
   - 可以在 Real-ESRGAN/cog_predict.py 获取更多的模型。
   - [GFPGANv1.4.pth](https://github.com/TencentARC/GFPGAN/releases/download/v1.3.0/GFPGANv1.4.pth)
 
-## 使用方法
+## 🚀 快速开始
 
-使用 **KLing-Video-WatermarkRemover-Enhancer** 去除水印并增强视频，只需运行以下命令：
-
-```bash
-python main.py --input path/to/video.mp4 --remove-watermark --enhance-video
-```
-
-### 参数说明
-
-- `--input`：输入视频的路径或文件夹路径。
-- `--remove-watermark`：如果指定此参数，则启用水印去除功能。
-- `--enhance-video`：如果指定此参数，则启用视频增强功能。
-
-## 示例
+只需一行命令，即可开启视频优化之旅：
 
 ```bash
-python main.py --input example.mp4 --remove-watermark --enhance-video
+python main.py --input your_video.mp4 --remove-watermark --enhance-video
 ```
 
-## 项目结构
+### 🎮 常用命令示例
 
-- **main.py**：主程序入口，负责管理整个处理流程。
-- **modules/**：包含各个功能模块（擦除水印、视频增强等）。
-- **utils/**：包含通用工具，如日志记录、视频处理工具等。
-- **config.yaml**：配置文件，用于设置水印等参数。
+```bash
+# 仅去除水印
+python main.py --input video.mp4 --remove-watermark
 
-## 参考
-- 视频擦除：https://github.com/researchmm/STTN
-- 视频修复：https://github.com/xinntao/Real-ESRGAN
+# 仅增强视频质量
+python main.py --input video.mp4 --enhance-video
+
+# 批量处理文件夹中的所有视频
+python main.py --input videos_folder --remove-watermark --enhance-video
+```
+
+## 📁 项目结构
+
+```
+KLing-Video-WatermarkRemover-Enhancer/
+├── 📄 main.py          # 主程序入口
+├── 📁 modules/         # 核心功能模块
+├── 📁 utils/          # 工具函数
+└── 📄 config.yaml     # 配置文件
+```
+
+## 🤝 参考项目
+
+- [STTN](https://github.com/researchmm/STTN) - 强大的视频擦除技术
+- [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) - 顶尖的视频超分辨率方案
+
+## 🌟 支持项目
+
+如果这个项目对你有帮助，欢迎点个 Star ⭐️
